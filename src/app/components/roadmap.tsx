@@ -18,8 +18,7 @@ const Roadmap = () => {
 							Announcement of StreamPundit
 						</h3>
 						<p className='mb-4 text-base font-normal text-gray-500 dark:text-gray-400'>
-							Initial announcement of what StreamPundit is on multiple social
-							platforms. Our start of the project.
+							Initial announcement of StreamPundit.
 						</p>
 						{/* <a
 							href='#'
@@ -46,11 +45,11 @@ const Roadmap = () => {
 							June 2023
 						</time>
 						<h3 className='text-lg font-semibold text-gray-900 dark:text-white'>
-							Homepage
+							Landing Page
 						</h3>
 						<p className='text-base font-normal text-gray-500 dark:text-gray-400'>
-							The landing page for the platform where users can view our list of
-							streamers.
+							The main page is where users can view, filter, and search for
+							streamers they want to favorite.
 						</p>
 					</li>
 					<li className='mt-10 ml-4'>

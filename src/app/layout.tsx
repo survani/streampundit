@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { Lato } from 'next/font/google';
+import Footer from './components/footer';
 import Navigation from './components/navigation';
 import './globals.css';
 
@@ -24,6 +25,7 @@ export default function RootLayout({
 			<body className={clsx('bg-cover bg-no-repeat', lato.variable)}>
 				<Navigation />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
