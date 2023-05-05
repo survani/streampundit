@@ -11,9 +11,8 @@ const Footer = () => {
 				width={250}
 				height={100}
 				alt='Stream Pundit Logo'
-				className='mt-4'
+				className='mt-4 mb-2'
 			/>
-			<p className='my-2'>✅ We are still working on StreamPundit</p>
 		</div>
 	);
 };
