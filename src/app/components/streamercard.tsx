@@ -4,18 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { Streams } from './types';
 
 const StreamerCard = () => {
-	console.log();
-	type Streams = {
-		id: number;
-		user_id: number;
-		user_name: string;
-		type: string;
-		viewer_count: number;
-		thumbnail_url: string;
-	};
-
 	async function getStreams() {
 		const res = await axios('https://api.twitch.tv/helix/streams?first=50', {
 			method: 'get',
@@ -39,7 +30,7 @@ const StreamerCard = () => {
 		queryFn: getStreams,
 	});
 
-	const random = (min: number, max: number, seed: number) => {
+	const randomNumber = (min: number, max: number, seed: number) => {
 		return Math.floor(min + (max - min) * seed);
 	};
 
@@ -57,7 +48,11 @@ const StreamerCard = () => {
 							.map((stream: Streams) => (
 								<div key={stream.id} className='border-2 text-center'>
 									<Image
-										src={`https://robohash.org/${random(1, 50, Math.random())}`}
+										src={`https://robohash.org/${randomNumber(
+											1,
+											50,
+											Math.random()
+										)}`}
 										alt={stream.user_name}
 										width={250}
 										height={250}
