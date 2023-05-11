@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { randomNumber } from './helpers';
 import { Streams } from './streamtypes';
 
 const StreamerCard = () => {
@@ -29,10 +30,6 @@ const StreamerCard = () => {
 		queryKey: ['streams'],
 		queryFn: getStreams,
 	});
-
-	const randomNumber = (min: number, max: number, seed: number) => {
-		return Math.floor(min + (max - min) * seed);
-	};
 
 	return (
 		<>
