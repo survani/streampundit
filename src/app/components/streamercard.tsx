@@ -2,10 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { getRandomValues } from 'crypto';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import handler from './avatars';
 
 const StreamerCard = () => {
+	console.log();
 	type Streams = {
 		id: number;
 		user_id: number;
@@ -38,6 +41,10 @@ const StreamerCard = () => {
 		queryFn: getStreams,
 	});
 
+	const random = (min: number, max: number, seed: number) => {
+		return Math.floor(min + (max - min) * seed);
+	};
+
 	return (
 		<>
 			<section className='flex flex-col lg:flex-row justify-center m-10 flex-wrap'>
@@ -52,11 +59,12 @@ const StreamerCard = () => {
 							.map((stream: Streams) => (
 								<div key={stream.id} className='border-2 text-center'>
 									<Image
-										src={`https://static-cdn.jtvnw.net/previews-ttv/live_user_${stream.user_name}-350x200.jpg`}
+										src={`https://robohash.org/${random(1, 50, Math.random())}`}
 										alt={stream.user_name}
 										width={250}
 										height={250}
 									/>
+
 									<h3>{stream.user_name}</h3>
 									<h3>Status: {stream.type}</h3>
 									<h3>Viewers: {stream.viewer_count}</h3>
