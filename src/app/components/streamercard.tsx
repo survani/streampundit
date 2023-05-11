@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { randomNumber } from './helpers';
 import { Streams } from './streamtypes';
@@ -43,21 +44,27 @@ const StreamerCard = () => {
 						{streams
 							.sort(() => 0.5 - Math.random())
 							.map((stream: Streams) => (
-								<div key={stream.id} className='border-2 text-center'>
-									<Image
-										src={`https://robohash.org/${randomNumber(
-											1,
-											50,
-											Math.random()
-										)}`}
-										alt={stream.user_name}
-										width={250}
-										height={250}
-									/>
-
-									<h3>{stream.user_name}</h3>
-									<h3>Status: {stream.type}</h3>
-									<h3>Viewers: {stream.viewer_count}</h3>
+								<div key={stream.id} className='border-2 text-center m-2 '>
+									<Link href={`https://www.twitch.tv/${stream.user_name}`}>
+										<Image
+											src={`https://robohash.org/${randomNumber(
+												1,
+												100,
+												Math.random()
+											)}`}
+											alt={stream.user_name}
+											width={250}
+											height={250}
+											loading='lazy'
+											placeholder='blur'
+											blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg=='
+										/>
+									</Link>
+									<div className='bg-indigo-400 '>
+										<h3 className='text-xl font-bold'>{stream.user_name}</h3>
+										<h3>Status: {stream.type}</h3>
+										<h3>Viewers: {stream.viewer_count}</h3>
+									</div>
 								</div>
 							))}
 					</div>
