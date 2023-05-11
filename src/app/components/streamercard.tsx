@@ -13,12 +13,6 @@ const StreamerCard = () => {
 		thumbnail_url: string;
 	};
 
-	type User = {
-		user_id: number;
-		profile_image_url: string;
-	};
-
-	//FIXME: Make sure we add enviroment variables here before we push...
 	async function getStreams() {
 		const res = await axios('https://api.twitch.tv/helix/streams?first=50', {
 			method: 'get',
@@ -42,38 +36,6 @@ const StreamerCard = () => {
 		queryFn: getStreams,
 	});
 
-	const allUserId = streams?.map((streamers: Streams) => {
-		return streamers.user_id;
-	});
-
-	console.log;
-
-	async function getUsers() {
-		const res = await axios(
-			`https://api.twitch.tv/helix/users?id=${allUserId}`,
-			{
-				method: 'get',
-				headers: {
-					Authorization: `Bearer ${process.env.NEXT_PUBLIC_TWITCH_TOKEN}`,
-					'Content-Type': 'application/json',
-					'Client-Id': `${process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID}`,
-				},
-			}
-		);
-		const users = await res.data;
-		return users.data;
-	}
-
-	const {
-		data: users,
-		isLoading: load,
-		isFetching: fetched,
-		error: err,
-	} = useQuery({
-		queryKey: ['users'],
-		queryFn: getUsers,
-	});
-
 	return (
 		<>
 			<section className='flex flex-col lg:flex-row justify-center m-10 flex-wrap'>
@@ -83,24 +45,21 @@ const StreamerCard = () => {
 					<p>Loading...</p>
 				) : streams ? (
 					<div className='flex flex-wrap justify-center'>
-						{streams.map((stream: Streams) => (
-							<div key={stream.id} className='border-2 text-center'>
-								{/* {users.map((users: User) => (
-									<div key={stream.id} className='border-2 text-center'>
-										<Image
-											src={users.profile_image_url}
-											alt={stream.user_name}
-											width={250}
-											height={250}
-										/>
-									</div>
-								))} */}
-
-								<h3>{stream.user_name}</h3>
-								<h3>Status: {stream.type}</h3>
-								<h3>Viewers: {stream.viewer_count}</h3>
-							</div>
-						))}
+						{streams
+							.sort(() => 0.5 - Math.random())
+							.map((stream: Streams) => (
+								<div key={stream.id} className='border-2 text-center'>
+									<Image
+										src={`https://static-cdn.jtvnw.net/previews-ttv/live_user_${stream.user_name}-350x200.jpg`}
+										alt={stream.user_name}
+										width={250}
+										height={250}
+									/>
+									<h3>{stream.user_name}</h3>
+									<h3>Status: {stream.type}</h3>
+									<h3>Viewers: {stream.viewer_count}</h3>
+								</div>
+							))}
 					</div>
 				) : null}
 			</section>

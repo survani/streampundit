@@ -75,7 +75,7 @@ const Roadmap = () => {
 							Ability to Vote
 						</h3>
 						<p className='text-base font-normal text-gray-500 dark:text-gray-400'>
-							Voting will only consist of favoriting your favorite streamer.
+							Voting will only consist of favoring your favorite streamer.
 						</p>
 					</li>
 					<li className='mt-10 ml-4'>
