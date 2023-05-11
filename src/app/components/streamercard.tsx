@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { Streams } from './types';
+import { Streams } from './streamtypes';
 
 const StreamerCard = () => {
 	async function getStreams() {
