@@ -2,10 +2,8 @@
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { getRandomValues } from 'crypto';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import handler from './avatars';
 
 const StreamerCard = () => {
 	console.log();
