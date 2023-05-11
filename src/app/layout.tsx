@@ -16,7 +16,7 @@ const lato = Lato({
 	variable: '--font-lato',
 });
 
-export const metadata = {
+const metadata = {
 	title: 'StreamPundit',
 	description: 'A platform that lets you vote for your favorite streamer.',
 };
