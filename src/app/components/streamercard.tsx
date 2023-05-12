@@ -62,7 +62,11 @@ const StreamerCard = () => {
 									</Link>
 									<div className='bg-indigo-400 '>
 										<h3 className='text-xl font-bold'>{stream.user_name}</h3>
-										<h3>Status: {stream.type}</h3>
+										{stream.type == 'live' ? (
+											<h3>Status: {stream.type}</h3>
+										) : (
+											'offline'
+										)}
 										<h3>Viewers: {stream.viewer_count}</h3>
 									</div>
 								</div>
